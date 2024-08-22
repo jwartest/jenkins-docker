@@ -1,13 +1,13 @@
 pipeline {
     agent any 
     environment {
-    DOCKERHUB_CREDENTIALS = credentials('anis-dockerhub')
+    DOCKERHUB_CREDENTIALS = credentials('jwartest-dockerhub')
     }
     stages { 
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t hantach/myapp:$BUILD_NUMBER .'
+                sh 'docker build -t jwartest/myapp:$BUILD_NUMBER .'
             }
         }
         stage('login to dockerhub') {
@@ -17,7 +17,7 @@ pipeline {
         }
         stage('push image') {
             steps{
-                sh 'docker push hantach/myapp:$BUILD_NUMBER'
+                sh 'docker push jwartest/myapp:$BUILD_NUMBER'
             }
         }
 }
